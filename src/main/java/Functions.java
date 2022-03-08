@@ -1,16 +1,17 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 // import java.util.concurrent.TimeUnit;
 
 public class Functions {
 
-    public void frageanzeige(ArrayList<String> frage, int fragennumber){
-        String frag = frage.get(0);
+    public void frageanzeige(Object[] frage, int fragennumber){
+        String frag = frage[0].toString();
         System.out.print(frag);
     }
 
-    public void antwortenanzeigen(ArrayList<String> frage, int fragennumber){
-        ArrayList<String> antwortanzeigenarray = frage;
+    public void antwortenanzeigen(Object[] frage, int fragennumber){
+        Object[] antwortanzeigenarray = frage;
         //antwortanzeigenarray.remove(0);
         int antwortnumber = 1;
         System.out.println("");
@@ -19,14 +20,14 @@ public class Functions {
             int anzeigen = antwortnumber;
 
             System.out.print(antwortnumber + ". ");
-            System.out.print(antwortanzeigenarray.get(anzeigen));
+            System.out.print(antwortanzeigenarray[anzeigen]);
             System.out.println("");
-            antwortanzeigenarray.add("\"" + anzeigen + "\"");
+            //antwortanzeigenarray.add("\"" + anzeigen + "\"");
             antwortnumber++;
         }
     }
 
-    public void quiz(ArrayList<String> frage, int fragennummer, int joker){
+    public void quiz(Object[] frage, int fragennummer, int joker){
         //system('clear');
         //titelAnzeigen();
         //ArrayList<String> frage = fragen.get(fragennummer);
@@ -54,12 +55,10 @@ public class Functions {
         return antwortnumber;
     }
 
-    public int joker(/*String antwortnumber,*/int fragennumber,int gewinn,int joker, ArrayList<String> frage){
+    public int joker(/*String antwortnumber,*/int fragennumber,int gewinn,int joker, Object[] frage){
         //system('clear');
 
-        ArrayList<String> zweiMoeglichkeiten = new ArrayList<String>();
-        zweiMoeglichkeiten.add(frage.get(5));
-        zweiMoeglichkeiten.add(frage.get(6));
+        Object[] zweiMoeglichkeiten =  new Object [] {frage[5], frage[6]};
 
 
         //titelAnzeigen();
@@ -70,31 +69,31 @@ public class Functions {
         System.out.println("");
 
 
-        ArrayList<String> antwortanzeigenarray = frage;
+        Object[] antwortanzeigenarray = frage;
         //antwortanzeigenarray.remove(0);
         int antwortnumber = 1;
 
         while (antwortnumber <= 4) {
             int anzeigen = antwortnumber;
 
-            if (zweiMoeglichkeiten.contains(antwortnumber)) {
+            if (Arrays.asList(zweiMoeglichkeiten).contains(antwortnumber)) {
                 System.out.print(antwortnumber + ". (Grün)");
-                System.out.print(antwortanzeigenarray.get(anzeigen));
+                System.out.print(antwortanzeigenarray[anzeigen]);
             } else {
                 System.out.print(antwortnumber + ". ");
-                System.out.print(antwortanzeigenarray.get(anzeigen));
+                System.out.print(antwortanzeigenarray[anzeigen]);
             }
             System.out.println("");
-            antwortanzeigenarray.add("\"" + anzeigen + "\"");
+            //antwortanzeigenarray.add("\"" + anzeigen + "\"");
             antwortnumber++;
         }
         joker--;
         return joker;
     }
 
-    public  int antwortTest(String antwortnumber, int fragennumber, int gewinn, ArrayList<String> frage,ArrayList<String> PreisGeldArrayOhne){
+    public  int antwortTest(String antwortnumber, int fragennumber, int gewinn, Object[] frage,ArrayList<String> PreisGeldArrayOhne){
 
-        String richtigeAntwort = frage.get(5);
+        String richtigeAntwort = frage[5].toString();
         if (richtigeAntwort.equals(antwortnumber)) {
             System.out.println("Das ist richtig");
             gewinn--;
@@ -119,8 +118,9 @@ public class Functions {
             System.out.println("Sie haben nichts gewonnen.");
         }
         int verlohen = 0;
-        System.out.println("Keine Fragen mehr!!!");
+        //System.out.println("Keine Fragen mehr!!!");
         System.out.println("Ende Ende Ende Ende");
+        System.exit(0);
         return verlohen;
     }
 
